@@ -65,7 +65,7 @@ const foodItems = [
     };
   
     try {
-      const res = await fetch('https://your-server-url.com/submit_order', {
+      const res = await fetch('https://ae9c3290809b51d6290a4e385776b595.serveo.net/submit_order', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(order)
