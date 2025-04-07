@@ -27,7 +27,7 @@ const foodItems = [
       const div = document.createElement('div');
       div.className = 'food-item';
       div.innerHTML = `
-        <span>${item.name} (${item.price} RON)</span>
+        <span>${item.name} (${item.price} Lei)</span>
         <div>
           <button type="button" class="btn-minus" onclick="updateQty('${item.name}', -1)">-</button>
           <button type="button" class="btn-plus" onclick="updateQty('${item.name}', 1)">+</button>
