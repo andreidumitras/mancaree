@@ -30,8 +30,8 @@ const foodItems = [
         <span>${item.name} (${item.price} RON)</span>
         <div>
           <button type="button" class="btn-minus" onclick="updateQty('${item.name}', -1)">-</button>
-          <span id="${item.name}-qty">0</span>
           <button type="button" class="btn-plus" onclick="updateQty('${item.name}', 1)">+</button>
+          <span id="${item.name}-qty">0</span>
         </div>
       `;
       foodContainer.appendChild(div);
@@ -54,33 +54,53 @@ const foodItems = [
   
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-  
-    const name = document.getElementById('name').value.trim();
-    if (!name) return alert("Please enter your name!");
-  
+    // grab the name and the surname
+    const nuem = document.getElementById('nume').value.trim();
+    const prenume = document.getElementById('prenume').value.trim();
+    
+    // verify to be filled all the textboxes
+    if (!nume || !prenume)
+      return alert("Te rog completeaza campurile de nume si prenume, in mod complet!");
+    
+    const items = [];
+    let totalPrice = 0;
+
+    foodItems.forEach(item => {
+      const quantity = quantities[item.name];
+      if (quantity > 0) {
+        items.push({
+          name: item.name,
+          price: item.price,
+          quantity: quantity
+        });
+        totalPrice += item.price * quantity;
+      }
+    });
+    // create the order
     const order = {
-      name,
-      items: quantities,
-      timestamp: new Date().toISOString()
+      nume,
+      prenume,
+      items,
+      total_price: totalPrice
     };
   
     try {
-      const res = await fetch('https://ae9c3290809b51d6290a4e385776b595.serveo.net/submit_order', {
+      const result = await fetch('https://e19e6e834d5d88f4f3d46f6f7b12ae47.serveo.net/submit_order', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(order)
       });
   
-      if (res.ok) {
-        alert("Order sent successfully!");
+      if (result.ok) {
+        alert("Comanda ta a fost trimisa cu succes!");
         form.reset();
         Object.keys(quantities).forEach(k => quantities[k] = 0);
         updateTotal();
       } else {
-        alert("Something went wrong!");
+        alert("Ceva nu a mers bine. Vorbeste cu *blandete* cu Andrei!");
       }
     } catch (err) {
-      alert("Couldn't reach the server.");
+      alert("Nu a mai ajuns comanda la server. Vorbeste cu blandete cu Andrei si veti gasi o solutie.");
     }
   });
   
