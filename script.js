@@ -93,6 +93,18 @@ const foodItems = [
   
       if (result.ok) {
         alert("Comanda ta a fost trimisa cu succes!");
+        // Hide the form and food options
+        form.style.display = 'none';
+        foodContainer.style.display = 'none';
+
+        // Optionally, display a thank-you message
+        const thankYouMessage = document.createElement('div');
+        thankYouMessage.textContent = "Multumim pentru comanda ta!";
+        thankYouMessage.style.fontSize = '20px';
+        thankYouMessage.style.textAlign = 'center';
+        document.body.appendChild(thankYouMessage);
+
+        // Reset the form and quantities
         form.reset();
         Object.keys(quantities).forEach(k => quantities[k] = 0);
         updateTotal();
