@@ -1,5 +1,5 @@
 body {
-    font-family: 'Courier New', Courier, monospace
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     background-color: #f8f6ff;
     color: #333;
     display: flex;
@@ -19,7 +19,7 @@ body {
   
   h1 {
     font-size: 2.5rem;
-    color: #6c00f7;
+    color: #333334;
     margin-bottom: 1rem;
   }
   
@@ -28,7 +28,7 @@ body {
     padding: 1rem;
     margin-bottom: 1.5rem;
     font-size: 1.2rem;
-    border: 2px solid #6c00f7;
+    border: 2px solid #333334;
     border-radius: 0.5rem;
   }
   
